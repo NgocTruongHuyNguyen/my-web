@@ -16,19 +16,19 @@ export default function Nav() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   // Track active section
-  // useEffect(() => {
-  //   const sections = document.querySelectorAll("section[id]");
-  //   const observer = new IntersectionObserver(
-  //     (entries) => {
-  //       entries.forEach((entry) => {
-  //         if (entry.isIntersecting) setActive(entry.target.id);
-  //       });
-  //     },
-  //     { threshold: 0.5 }
-  //   );
-  //   sections.forEach((s) => observer.observe(s));
-  //   return () => observer.disconnect();
-  // }, []);
+  useEffect(() => {
+    const sections = document.querySelectorAll("section[id]");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActive(entry.target.id);
+        });
+      },
+      { threshold: 0.5 }
+    );
+    sections.forEach((s) => observer.observe(s));
+    return () => observer.disconnect();
+  }, []);
 
   // Close menu on resize to desktop
   useEffect(() => {

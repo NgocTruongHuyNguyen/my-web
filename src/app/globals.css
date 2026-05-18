@@ -19,7 +19,7 @@
   }
 }
 
-/* ── Dark mode (default) ── */
+/* ── Dark mode ── */
 :root {
   --bg: #161616;
   --nav-bg: rgba(22, 22, 22, 0.92);
@@ -41,10 +41,10 @@ html.light {
   --thumb-bg: #dddad5;
 }
 
-html {
+/* html {
   scroll-behavior: smooth;
   scroll-snap-type: y mandatory;
-}
+} */
 
 body {
   background-color: var(--bg);
@@ -55,6 +55,6 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-section {
+/* section {
   scroll-snap-align: start;
-}
+} */

@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 // import SnakeGame from "./SnakeGame";
 
-// SVG Icons
 const DownloadIcon = () => (
   <svg className="w-6 h-6 fill-white" viewBox="0 0 24 24">
     <path d="M12 16L7 11H10V4H14V11H17L12 16ZM5 18H19V20H5V18Z" />
@@ -37,14 +36,16 @@ interface ContactCardProps {
   icon: React.ReactNode;
   href?: string;
   onClick?: () => void;
+  download?: string;
 }
 
-function ContactCard({ bg, label, sub, icon, href, onClick }: ContactCardProps) {
+function ContactCard({ bg, label, sub, icon, href, onClick,download }: ContactCardProps) {
   const Tag = href ? "a" : "button";
 
   return (
     <Tag
       href={href}
+      download={download}
       target={href ? "_blank" : undefined}
       rel={href ? "noopener noreferrer" : undefined}
       onClick={onClick}
@@ -69,7 +70,7 @@ export default function ContactSection() {
   return (
     <section
       id="contact"
-      className="relative min-h-screen flex flex-col items-center justify-center px-8 pt-24 pb-16"
+      className="relative min-h-screen flex flex-col items-center justify-center px-8 pt-24 pb-40"
     >
       <motion.h2
         initial={{ opacity: 0, y: 20 }}
@@ -91,23 +92,24 @@ export default function ContactSection() {
       >
         <ContactCard
           bg="var(--green)"
-          label="Download CV"
+          label="My Resume"
           icon={<DownloadIcon />}
-          href="/cv.pdf"
+          href="/Resume.pdf"
         />
         <ContactCard
           bg="var(--grey-card)"
           label="Check my professional profile at"
           sub="LinkedIn"
           icon={<LinkedInIcon />}
-          href="https://linkedin.com/in/yourprofile"
+          href="https://www.linkedin.com/in/ngoc-truong-huy-nguyen/"
+          download="Ngoc_Truong_Huy_Nguyen_CV.pdf"
         />
         <ContactCard
-          bg="var(--grey-card)"
+          bg="var(--green)"
           label="See more of my work at"
           sub="Github"
           icon={<GitHubIcon />}
-          href="https://github.com/yourusername"
+          href="https://github.com/NgocTruongHuyNguyen"
         />
         <ContactCard
           bg="var(--grey-card)"

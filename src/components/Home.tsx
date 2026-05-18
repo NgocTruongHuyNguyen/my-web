@@ -18,9 +18,6 @@ export default function HomeSection() {
           transition={{ duration: 0.8, delay: 0.1 }}
           className="w-36 h-36 mb-8 overflow-hidden bg-[#d8d5d0] flex items-center justify-center"
         >
-          {/* Replace the div below with:
-              <Image src="/photo.jpg" alt="Ngoc Truong Huy Nguyen" width={144} height={144} className="object-cover w-full h-full" />
-          */}
           <span className="text-[0.65rem] tracking-widest text-[#aaa]">PHOTO</span>
         </motion.div>
 
@@ -30,7 +27,8 @@ export default function HomeSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.25 }}
           className="font-display text-[clamp(1.7rem,3.2vw,2.5rem)] font-medium tracking-wide mb-1"
-          style={{ fontFamily: "'Cormorant Garamond', serif" }}
+          style={{ 
+            fontFamily: "'Cormorant Garamond', serif'" }}
         >
           Ngoc Truong Huy Nguyen
         </motion.h1>
@@ -43,7 +41,7 @@ export default function HomeSection() {
           className="text-[clamp(1.1rem,2.2vw,1.55rem)] font-light mb-7"
           style={{
             fontFamily: "'Cormorant Garamond', serif",
-            color: "rgba(0, 0, 0, 0.75)",
+            color: "var(--muted)",
           }}
         >
           I&apos;m a Software Developer

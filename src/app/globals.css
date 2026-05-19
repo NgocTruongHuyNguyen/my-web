@@ -21,13 +21,17 @@
 
 /* ── Dark mode ── */
 :root {
-  --bg: #161616;
+  --bg: #121212;
   --nav-bg: rgba(22, 22, 22, 0.92);
   --green: #4a7c59;
   --grey-card: #888888;
-  --text: #f0ede6;
+  --emerald-green: #3E5641;
+  --text: #E0E0E0;
+  --sub-text: #B0B0B0;
   --muted: #999999;
   --thumb-bg: #eeebe6;
+  --card: #444444;
+  --logo: white;
 }
 
 /* ── Light mode ── */
@@ -35,10 +39,12 @@ html.light {
   --bg: #f5f3ef;
   --nav-bg: rgba(245, 243, 239, 0.92);
   --green: #4a7c59;
-  --grey-card: #9a9a9a;
+  --card: #e2e2e2;
   --text: #1a1a1a;
   --muted: #666666;
   --thumb-bg: #dddad5;
+  --sub-text: #606060;
+  --logo: black;
 }
 
 /* html {

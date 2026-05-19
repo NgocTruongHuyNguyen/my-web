@@ -6,7 +6,7 @@ export default function AboutSection() {
   return (
     <section
       id="about"
-      className="relative min-h-screen flex flex-col items-center justify-center px-8 pt-24 pb-16"
+      className="relative min-h-screen flex flex-col items-center justify-center px-8 pt-24 pb-40"
     >
       <FadeIn>
         <h2

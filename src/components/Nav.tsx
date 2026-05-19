@@ -14,6 +14,7 @@ const links = [
 export default function Nav() {
   const [active, setActive] = useState("home");
   const [menuOpen, setMenuOpen] = useState(false);
+  const [hoveredLink, setHoveredLink] = useState<string | null>(null);
 
   // Track active section
   useEffect(() => {
@@ -132,22 +133,32 @@ export default function Nav() {
             transition={{ duration: 0.25 }}
             className="fixed inset-0 z-40 flex flex-col items-center justify-center gap-10 md:hidden"
             style={{ background: "var(--bg)" }}
+            onMouseLeave={() => setHoveredLink(null)}
           >
             {links.map(({ label, href }, i) => {
               const id = href.replace("#", "");
+              const isHovered = hoveredLink === id;
+              const anyHovered = hoveredLink !== null;
+              const opacity = anyHovered
+                ? isHovered ? 1 : 0.15
+                : active === id ? 1 : 0.4;
               return (
                 <motion.a
                   key={href}
                   href={href}
-                  initial={{ opacity: 0, y: 16 }}
+                  initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.07 }}
+                  transition={{ delay: i * 0.07, duration: 0.3 }}
                   onClick={(e) => { e.preventDefault(); handleClick(href); }}
+                  onMouseEnter={() => setHoveredLink(id)}
+                  onMouseLeave={() => setHoveredLink(null)}
                   className="text-[2rem] font-medium tracking-wide no-underline transition-opacity duration-200"
                   style={{
                     fontFamily: "'Cormorant Garamond', serif",
                     color: "var(--text)",
-                    opacity: active === id ? 1 : 0.5,
+                    opacity,
+                    transform: isHovered ? "scale(1.06)" : "scale(1)",
+                    transition: "opacity 0.2s ease, transform 0.2s ease",
                   }}
                 >
                   {label}

@@ -3,6 +3,7 @@ import HomeSection from "../components/Home";
 import AboutSection from "../components/About";
 import PortfolioSection from "../components/Portfolio";
 import ContactSection from "../components/../components/Contact";
+import ScrollToTop from "../components/ScrollToTop";
 
 export default function Home() {
   return (
@@ -14,6 +15,8 @@ export default function Home() {
         <PortfolioSection />
         <ContactSection />
       </main>
+      <ScrollToTop/>
     </>
   );
+  
 }

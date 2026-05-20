@@ -18,8 +18,7 @@ export default function HomeSection() {
           transition={{ duration: 0.8, delay: 0.1 }}
           className="w-36 h-36 mb-8 overflow-hidden bg-[#d8d5d0] flex items-center justify-center"
         >
-          <span className="text-[0.65rem] tracking-widest text-[#aaa]">PHOTO</span>
-        </motion.div>
+        <Image src="/MyPhoto.JPG" alt="Ngoc Truong Huy Nguyen" width={144} height={144} className="object-cover w-full h-full" />        </motion.div>
 
         {/* Name */}
         <motion.h1

@@ -16,9 +16,10 @@ export default function HomeSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1 }}
-          className="w-36 h-36 mb-8 overflow-hidden bg-[#d8d5d0] flex items-center justify-center"
+          className="w-36 h-36 mb-8 overflow-hidden  flex items-center justify-center"
         >
-        <Image src="/MyPhoto.JPG" alt="Ngoc Truong Huy Nguyen" width={144} height={144} className="object-cover w-full h-full" />        </motion.div>
+        <Image src="/MyPhoto.JPG" alt="Ngoc Truong Huy Nguyen" loading="eager" width={144} height={144} className="object-cover w-full h-full rounded-full" />        
+        </motion.div>
 
         {/* Name */}
         <motion.h1

@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import {motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import ScrollHint from "./ScrollHint";
 
@@ -11,7 +11,7 @@ interface Project {
   description: string;
   image?: string;
   link?: string;
-  stats?: string;       
+  stats?: string;
   tags?: string[];
 }
 
@@ -38,7 +38,7 @@ const projects: Project[] = [
     name: "Tax Calculator App",
     description:
       "A personal project born from a real-world problem. While on a trip back to Vietnam, I noticed the confusion around the country's new tax rules and decided to build a solution. I took it all the way from idea to tested product, calculating income tax under the updated rules and turning a personal frustration into something practical.",
-    link: "hhttps://github.com/NgocTruongHuyNguyen/TaxCalculatorApp",
+    link: "https://github.com/NgocTruongHuyNguyen/TaxCalculatorApp",
     tags: ["React", "TypeScript", "Firebase"],
     image: "/TaxImg.png",
   },
@@ -73,9 +73,11 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       transition={{ duration: 0.55, delay: index * 0.1 }}
       className="group"
     >
-      <div className="flex flex-col sm:flex-row sm:gap-8">
-        <div className="flex flex-col gap-2 min-w-0 sm:flex-1 mb-4 sm:mb-0">
-          {/* Title + arrow */}
+      {/* Mobile: stacked. Desktop: side by side */}
+      <div className="flex flex-col sm:flex-row sm:gap-8 sm:items-start">
+
+        {/* INFO — full width on mobile, flex-1 on desktop */}
+        <div className="flex flex-col gap-2 flex-1 min-w-0 mb-5 sm:mb-0">
           <a
             href={project.link ?? "#"}
             target="_blank"
@@ -92,19 +94,16 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             {project.link && <ArrowIcon />}
           </a>
 
-          {/* Description */}
           <p className="text-[0.82rem] leading-loose" style={{ color: "var(--muted)" }}>
             {project.description}
           </p>
 
-          {/* Stats */}
           {project.stats && (
             <p className="text-[0.82rem]" style={{ color: "var(--muted)" }}>
               {project.stats}
             </p>
           )}
 
-          {/* Tags */}
           {project.tags && project.tags.length > 0 && (
             <div className="flex flex-wrap gap-2 mt-1">
               {project.tags.map((tag) => (
@@ -119,34 +118,26 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             </div>
           )}
         </div>
-        <a
-          href={project.link ?? "#"}
-          target="_blank"
-          rel="noopener noreferrer"
-          // className="block shrink-0 w-full sm:w-[200px] sm:order-first aspect-[4/3] overflow-hidden relative"
-          className="block overflow-hidden rounded-sm transition-opacity duration-300 hover:opacity-80"
-          style={{ width: "160px" }}
-          tabIndex={-1}
-        >
-          {project.image ? (
+
+        {/* THUMBNAIL — hidden on mobile, fixed width on desktop */}
+        {project.image && (
+          <a
+            href={project.link ?? "#"}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block shrink-0 w-full sm:w-[220px] overflow-hidden rounded-sm transition-opacity duration-300 hover:opacity-80"
+            tabIndex={-1}
+          >
             <Image
               src={project.image}
               alt={project.name}
-              // className="w-full h-full transition-transform duration-500 group-hover:scale-105"
-              width={400}
-              height={400}
-              className="w-full h-auto"
+              width={440}
+              height={440}
+              className="w-full h-auto block"
+              loading="eager"
             />
-          ) : (
-            <div
-              className="w-full h-full flex items-center justify-center text-[0.6rem] tracking-widest"
-              style={{ color: "var(--muted)" }}
-            >
-              IMAGE
-            </div>
-          )}
-        </a>
-
+          </a>
+        )}
       </div>
     </motion.div>
   );
@@ -158,17 +149,17 @@ export default function PortfolioSection() {
       id="portfolio"
       className="relative min-h-screen flex flex-col items-center justify-center px-8 pt-20 pb-20"
     >
-      <div className="w-full max-w-2xl mb-8">
-       <motion.h2
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.65 }}
-        className="text-[clamp(1.7rem,2.8vw,2.3rem)] font-medium tracking-wide text-center mb-14"
-        style={{ fontFamily: "'Cormorant Garamond', serif" }}
-      >
-        Portfolio
-      </motion.h2>
+      <div className="w-full max-w-2xl">
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.65 }}
+          className="text-[clamp(1.7rem,2.8vw,2.3rem)] font-medium tracking-wide text-center mb-14"
+          style={{ fontFamily: "'Cormorant Garamond', serif" }}
+        >
+          Portfolio
+        </motion.h2>
 
         <div className="flex flex-col gap-14 w-full">
           {projects.map((project, i) => (
@@ -181,4 +172,3 @@ export default function PortfolioSection() {
     </section>
   );
 }
-

@@ -27,10 +27,25 @@ export default function AboutSection() {
             I&apos;m a Software Developer
           </h3>
           <p className="text-[0.82rem] leading-loose" style={{ color: "var(--muted)" }}>
-            Full-stack developer based in Wanaka, New Zealand. I enjoy working
-            across the entire stack — crafting intuitive interfaces and building
-            robust backend systems. I thrive in collaborative environments and
-            love solving problems with clean, elegant solutions.
+            Recently graduated from Ara Institute of Canterbury with a Bachelor of
+            Information and Communication Technology, specialising in Software
+            Development — graduating with{" "}
+            <span style={{ color: "var(--text)" }}>Distinction</span>.
+          </p>
+          <p className="text-[0.82rem] leading-loose mt-3" style={{ color: "var(--muted)" }}>
+            I work across the full stack with experience in C#, Python, JavaScript,
+            Java, PHP, HTML, CSS, and databases including MySQL and MongoDB. Outside
+            of study I build personal projects to sharpen my skills and tackle
+            real-world problems I&apos;ve noticed in everyday life.
+          </p>
+          <p className="text-[0.82rem] leading-loose mt-3" style={{ color: "var(--muted)" }}>
+            I have a strong interest in data, analysis, and finding the root cause of
+            problems. I&apos;m also passionate about finance, economics, and investment —
+            and love applying my technical skills in those spaces.
+          </p>
+          <p className="text-[0.82rem] leading-loose mt-3" style={{ color: "var(--muted)" }}>
+            When I&apos;m not coding, you&apos;ll find me playing sports, going for walks,
+            or capturing the scenery and people around me through photography.
           </p>
         </FadeIn>
 
@@ -41,12 +56,12 @@ export default function AboutSection() {
               className="text-[1.25rem] font-medium mb-3"
               style={{ fontFamily: "'Cormorant Garamond', serif" }}
             >
-              10 Projects
+              2 Years Experience
             </h3>
             <p className="text-[0.82rem] leading-loose" style={{ color: "var(--muted)" }}>
-              Delivered across web applications, APIs, and mobile experiences —
-              each contributing real value to users and continuously pushing my
-              skills further.
+              As a full-stack developer through academic projects and personal
+              builds, plus 5 months of hands-on experience working in a
+              professional development team as an intern.
             </p>
           </div>
           <div>
@@ -54,12 +69,24 @@ export default function AboutSection() {
               className="text-[1.25rem] font-medium mb-3"
               style={{ fontFamily: "'Cormorant Garamond', serif" }}
             >
-              3 Years of Experience
+              Full-Stack Skills
             </h3>
             <p className="text-[0.82rem] leading-loose" style={{ color: "var(--muted)" }}>
-              Building production-grade applications with modern stacks including
-              Next.js, TypeScript, Node.js, and PostgreSQL. Always learning and
-              adapting to new technologies.
+              Comfortable across frontend and backend, multiple languages and
+              frameworks, databases, APIs, and shipping complete products from
+              idea to deployment.
+            </p>
+          </div>
+          <div>
+            <h3
+              className="text-[1.25rem] font-medium mb-3"
+              style={{ fontFamily: "'Cormorant Garamond', serif" }}
+            >
+              Problem Solver
+            </h3>
+            <p className="text-[0.82rem] leading-loose" style={{ color: "var(--muted)" }}>
+              I enjoy digging into problems, understanding the root cause, and
+              building practical solutions.
             </p>
           </div>
         </FadeIn>

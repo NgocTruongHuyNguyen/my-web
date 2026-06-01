@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
+import {motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import ScrollHint from "./ScrollHint";
 
@@ -20,8 +20,7 @@ const projects: Project[] = [
     id: 1,
     name: "Motorhome Parking Platform",
     description:
-      "A short description of what this project does, the problem it solves, and what makes it interesting or unique.",
-    stats: "★ 42",
+      "A 4-month internship project enhancing an existing responsive web app that lets motorhome travellers search, book, and review parking spaces across New Zealand. Working as a full-stack developer, I gained hands-on experience applying React, TypeScript, and Ionic in a real-world production codebase.",
     tags: ["React", "TypeScript", "Ionic"],
     image: "/MotorhomeApp.png",
   },
@@ -29,9 +28,8 @@ const projects: Project[] = [
     id: 2,
     name: "Millars Beach Website Remake",
     description:
-      "Another project description. Talk about the tech you used, the impact it had, or any notable achievements.",
+      "One of my first real-client projects, a full redesign of the Millars Beach community website built to spec from client requirements. Working full-stack, I learned how to translate real-world briefs into a clean, modern site using PHP, Tailwind, and HTML.",
     link: "https://github.com/yourusername",
-    stats: "↓ 10k+ Downloads",
     tags: ["PHP", "Tailwind", "HTML"],
     image: "/MillarsBeachRemake.png",
   },
@@ -39,7 +37,7 @@ const projects: Project[] = [
     id: 3,
     name: "Tax Calculator App",
     description:
-      "Describe this project in a couple of sentences. Keep it concise but informative enough to spark curiosity.",
+      "A personal project born from a real-world problem. While on a trip back to Vietnam, I noticed the confusion around the country's new tax rules and decided to build a solution. I took it all the way from idea to tested product, calculating income tax under the updated rules and turning a personal frustration into something practical.",
     link: "hhttps://github.com/NgocTruongHuyNguyen/TaxCalculatorApp",
     tags: ["React", "TypeScript", "Firebase"],
     image: "/TaxImg.png",
@@ -48,7 +46,7 @@ const projects: Project[] = [
     id: 4,
     name: "Personal Website",
     description:
-      "Describe this project in a couple of sentences. Keep it concise but informative enough to spark curiosity.",
+      "My personal portfolio site, built to serve as my online resume. A central place where I can showcase my projects, skills, and experience in a way that feels more alive than a PDF ever could.",
     link: "https://github.com/yourusername",
     tags: ["Next.js", "TypeScript", "CSS"],
     image: "/PersonalWeb.png",
@@ -125,17 +123,19 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           href={project.link ?? "#"}
           target="_blank"
           rel="noopener noreferrer"
-          className="block shrink-0 w-full sm:w-[200px] sm:order-first aspect-[4/3] overflow-hidden relative"
-          style={{ background: "var(--thumb-bg)" }}
+          // className="block shrink-0 w-full sm:w-[200px] sm:order-first aspect-[4/3] overflow-hidden relative"
+          className="block overflow-hidden rounded-sm transition-opacity duration-300 hover:opacity-80"
+          style={{ width: "160px" }}
           tabIndex={-1}
         >
           {project.image ? (
             <Image
               src={project.image}
               alt={project.name}
-              fill
-              className="object-cover transition-transform duration-500 group-hover:scale-105"
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              // className="w-full h-full transition-transform duration-500 group-hover:scale-105"
+              width={400}
+              height={400}
+              className="w-full h-auto"
             />
           ) : (
             <div

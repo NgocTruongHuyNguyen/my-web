@@ -161,7 +161,7 @@ export default function PortfolioSection() {
           Portfolio
         </motion.h2>
 
-        <div className="flex flex-col gap-14 w-full">
+        <div className="flex flex-col gap-14 w-full mb-10">
           {projects.map((project, i) => (
             <ProjectCard key={project.id} project={project} index={i} />
           ))}

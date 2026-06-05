@@ -47,7 +47,7 @@ const projects: Project[] = [
     name: "Personal Website",
     description:
       "My personal portfolio site, built to serve as my online resume. A central place where I can showcase my projects, skills, and experience in a way that feels more alive than a PDF ever could.",
-    link: "https://github.com/yourusername",
+    link: "https://github.com/NgocTruongHuyNguyen/my-web",
     tags: ["Next.js", "TypeScript", "CSS"],
     image: "/PersonalWeb.png",
   },

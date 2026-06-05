@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useCallback } from "react";
-import { start } from "repl";
 
 const GRID = 19;
 
@@ -16,6 +15,7 @@ interface SnakeGameProps {
 
 export default function SnakeGame({ onClose }: SnakeGameProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const touchStartRef = useRef<{ x: number; y: number } | null>(null);
   const stateRef = useRef({
     snake: [{ x: 7, y: 7 }, { x: 6, y: 7 }, { x: 5, y: 7 }] as Point[],
     dir: { x: 1, y: 0 } as Point,
@@ -84,6 +84,18 @@ export default function SnakeGame({ onClose }: SnakeGameProps) {
     draw();
   }, [draw, placeFood]);
 
+  // Change direction and start game if not started
+  const changeDir = useCallback((nd: Point) => {
+    const s = stateRef.current;
+    if (!s.running) return;
+    if (nd.x === -s.dir.x && nd.y === -s.dir.y) return; // can't reverse
+    s.dir = nd;
+    if (!s.started) {
+      s.started = true;
+      s.loop = setInterval(tick, 130);
+    }
+  }, [tick]);
+
   const init = useCallback(() => {
     const s = stateRef.current;
     s.snake = [{ x: 7, y: 7 }, { x: 6, y: 7 }, { x: 5, y: 7 }];
@@ -91,39 +103,54 @@ export default function SnakeGame({ onClose }: SnakeGameProps) {
     s.score = 0;
     s.running = true;
     s.started = false;
-
     if (s.loop) clearInterval(s.loop);
     placeFood();
-    if (scoreRef.current) scoreRef.current.textContent = "Score: 0 — Arrow keys to play";
+    if (scoreRef.current) scoreRef.current.textContent = "Score: 0 — Swipe or use arrow keys";
     draw();
-  }, [tick, draw, placeFood]);
+  }, [draw, placeFood]);
 
   useEffect(() => {
     init();
+
+    // Keyboard controls
     const handleKey = (e: KeyboardEvent) => {
-      const s = stateRef.current;
-      if (!s.running) return;
       const map: Record<string, Point> = {
         ArrowUp: { x: 0, y: -1 }, ArrowDown: { x: 0, y: 1 },
         ArrowLeft: { x: -1, y: 0 }, ArrowRight: { x: 1, y: 0 },
       };
       const nd = map[e.key];
-      if (nd && !(nd.x === -s.dir.x && nd.y === -s.dir.y)) {
-        s.dir = nd;
-        if (!s.started) {
-            s.started = true;
-            s.loop = setInterval(tick, 130);
-        }
-        
-        e.preventDefault();
-      }
+      if (nd) { changeDir(nd); e.preventDefault(); }
     };
     window.addEventListener("keydown", handleKey);
+
     return () => {
       window.removeEventListener("keydown", handleKey);
       if (stateRef.current.loop) clearInterval(stateRef.current.loop);
     };
-  }, [init]);
+  }, [init, changeDir]);
+
+  // Touch swipe handlers
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartRef.current = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (!touchStartRef.current) return;
+    const dx = e.changedTouches[0].clientX - touchStartRef.current.x;
+    const dy = e.changedTouches[0].clientY - touchStartRef.current.y;
+    touchStartRef.current = null;
+
+    // Minimum swipe distance to register
+    if (Math.abs(dx) < 10 && Math.abs(dy) < 10) return;
+
+    if (Math.abs(dx) > Math.abs(dy)) {
+      // Horizontal swipe
+      changeDir(dx > 0 ? { x: 1, y: 0 } : { x: -1, y: 0 });
+    } else {
+      // Vertical swipe
+      changeDir(dy > 0 ? { x: 0, y: 1 } : { x: 0, y: -1 });
+    }
+  };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/85">
@@ -142,18 +169,53 @@ export default function SnakeGame({ onClose }: SnakeGameProps) {
             ✕
           </button>
         </div>
+
         <canvas
           ref={canvasRef}
           width={300}
           height={300}
-          className="border border-[#333] block"
+          className="border border-[#333] block touch-none"
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
         />
+
         <p ref={scoreRef} className="mt-3 text-[0.78rem]" style={{ color: "var(--muted)" }}>
-          Score: 0 — Arrow keys to play
+          Score: 0 — Swipe or use arrow keys
         </p>
+
+        <div className="mt-4 flex flex-col items-center gap-1 md:hidden">
+          <button
+            onTouchStart={(e) => { e.preventDefault(); changeDir({ x: 0, y: -1 }); }}
+            onClick={() => changeDir({ x: 0, y: -1 })}
+            className="w-12 h-12 rounded-md text-lg flex items-center justify-center border border-[#444] cursor-pointer hover:brightness-110 active:brightness-125"
+            style={{ background: "#2a2a2a", color: "var(--text)" }}
+          >↑</button>
+          <div className="flex gap-1">
+            <button
+              onTouchStart={(e) => { e.preventDefault(); changeDir({ x: -1, y: 0 }); }}
+              onClick={() => changeDir({ x: -1, y: 0 })}
+              className="w-12 h-12 rounded-md text-lg flex items-center justify-center border border-[#444] cursor-pointer hover:brightness-110 active:brightness-125"
+              style={{ background: "#2a2a2a", color: "var(--text)" }}
+            >←</button>
+            <div className="w-12 h-12" />
+            <button
+              onTouchStart={(e) => { e.preventDefault(); changeDir({ x: 1, y: 0 }); }}
+              onClick={() => changeDir({ x: 1, y: 0 })}
+              className="w-12 h-12 rounded-md text-lg flex items-center justify-center border border-[#444] cursor-pointer hover:brightness-110 active:brightness-125"
+              style={{ background: "#2a2a2a", color: "var(--text)" }}
+            >→</button>
+          </div>
+          <button
+            onTouchStart={(e) => { e.preventDefault(); changeDir({ x: 0, y: 1 }); }}
+            onClick={() => changeDir({ x: 0, y: 1 })}
+            className="w-12 h-12 rounded-md text-lg flex items-center justify-center border border-[#444] cursor-pointer hover:brightness-110 active:brightness-125"
+            style={{ background: "#2a2a2a", color: "var(--text)" }}
+          >↓</button>
+        </div>
+
         <button
           onClick={init}
-          className="mt-2 px-6 py-2 text-[0.78rem] tracking-wider text-white border-none rounded-sm cursor-pointer hover:brightness-110 transition-all"
+          className="mt-3 px-6 py-2 text-[0.78rem] tracking-wider text-white border-none rounded-sm cursor-pointer hover:brightness-110 transition-all"
           style={{ background: "var(--green)" }}
         >
           Restart

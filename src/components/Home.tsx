@@ -55,9 +55,9 @@ export default function HomeSection() {
           className="text-[0.83rem] leading-relaxed max-w-sm"
           style={{ color: "var(--muted)" }}
         >
-          Passionate about building clean, performant, and user-friendly
-          applications. I love turning complex ideas into elegant digital
-          experiences.
+          Started in business, switched to code, and haven't looked back. 
+          I build full-stack applications and love the moment a messy real-world problem turns 
+          into something that actually works.
         </motion.p>
       </div>
 

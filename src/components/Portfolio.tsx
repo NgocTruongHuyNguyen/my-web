@@ -29,7 +29,7 @@ const projects: Project[] = [
     name: "Millars Beach Website Remake",
     description:
       "One of my first real-client projects, a full redesign of the Millars Beach community website built to spec from client requirements. Working full-stack, I learned how to translate real-world briefs into a clean, modern site using PHP, Tailwind, and HTML.",
-    link: "https://github.com/yourusername",
+    link: "https://github.com/NgocTruongHuyNguyen/MillarsBeachRemake",
     tags: ["PHP", "Tailwind", "HTML"],
     image: "/MillarsBeachRemake.png",
   },
@@ -40,7 +40,7 @@ const projects: Project[] = [
       "A personal project born from a real-world problem. While on a trip back to Vietnam, I noticed the confusion around the country's new tax rules and decided to build a solution. I took it all the way from idea to tested product, calculating income tax under the updated rules and turning a personal frustration into something practical.",
     link: "https://github.com/NgocTruongHuyNguyen/TaxCalculatorApp",
     tags: ["React", "TypeScript", "Firebase"],
-    image: "/TaxImg.png",
+    image: "/TaxAppImage.png",
   },
   {
     id: 4,
@@ -79,7 +79,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         {/* INFO — full width on mobile, flex-1 on desktop */}
         <div className="flex flex-col gap-2 flex-1 min-w-0 mb-5 sm:mb-0">
           <a
-            href={project.link ?? "#"}
+            href={project.link}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 no-underline group/link w-fit"
@@ -122,7 +122,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         {/* THUMBNAIL — hidden on mobile, fixed width on desktop */}
         {project.image && (
           <a
-            href={project.link ?? "#"}
+            href={project.link}
             target="_blank"
             rel="noopener noreferrer"
             className="block shrink-0 w-full sm:w-[220px] overflow-hidden rounded-sm transition-opacity duration-300 hover:opacity-80"

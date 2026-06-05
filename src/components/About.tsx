@@ -27,9 +27,8 @@ export default function AboutSection() {
             I&apos;m a Software Developer
           </h3>
           <p className="text-[0.82rem] leading-loose" style={{ color: "var(--muted)" }}>
-            Recently graduated from Ara Institute of Canterbury with a Bachelor of
-            Information and Communication Technology, specialising in Software
-            Development — graduating with{" "}
+            Recently graduated from Ara Institute of Canterbury with a Bachelor of Information and Communication Technology, 
+            specialising in Software Development and finishing with{" "}
             <span style={{ color: "var(--text)" }}>Distinction</span>.
           </p>
           <p className="text-[0.82rem] leading-loose mt-3" style={{ color: "var(--muted)" }}>
@@ -39,9 +38,9 @@ export default function AboutSection() {
             real-world problems I&apos;ve noticed in everyday life.
           </p>
           <p className="text-[0.82rem] leading-loose mt-3" style={{ color: "var(--muted)" }}>
-            I have a strong interest in data, analysis, and finding the root cause of
-            problems. I&apos;m also passionate about finance, economics, and investment —
-            and love applying my technical skills in those spaces.
+            I have a strong interest in data, analysis, and getting to the root cause of problems. 
+            Finance, economics, and investment are also areas I genuinely enjoy, and 
+            I love finding ways to combine that curiosity with my technical skills.
           </p>
           <p className="text-[0.82rem] leading-loose mt-3" style={{ color: "var(--muted)" }}>
             When I&apos;m not coding, you&apos;ll find me playing sports, going for walks,
